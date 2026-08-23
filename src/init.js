@@ -1,5 +1,5 @@
 /**
- * `dawang-raoming init`：把技能装进目标项目，并铺好「长记性」的三件套。
+ * `dawang-raoming init`：把 skill 装进目标项目，并铺好「长记性」的三件套。
  *
  * 1. 安装 skills —— 让 Claude Code 检测到用户生气时激活 dawang-raoming。
  * 2. 生成记忆文件模板 —— 让 AI 有地方记错因。
@@ -19,14 +19,14 @@ const CLAUDE_RULE = `## 大王饶命：AI 生气自检（勿删）
 每次回复用户前，先快速判断：**用户本轮输入是否明显生气？**
 （负面情绪词、全大写、重复标点、直接骂 AI、同一件事第 3 次纠正、抱怨「又错了/根本没用」）
 
-- 是 → 先激活 \`dawang-raoming\` 技能，按它的三段式输出（搞怪道歉 + 回溯错因 + 写入记忆）再回到正题。
+- 是 → 先激活 \`dawang-raoming\` skill，按它的三段式输出（搞怪道歉 + 回溯错因 + 写入记忆）再回到正题。
 - 否 → 正常回复，不要凭空道歉。
 `;
 
 /** 没有任何 CLAUDE.md 时生成的最小模板 */
 const CLAUDE_MD_TEMPLATE = `# CLAUDE.md
 
-> 本项目使用 dawang-raoming 技能。此文件是给 AI 协作伙伴看的"项目说明书"，请按实际项目补充。
+> 本项目使用 dawang-raoming skill。此文件是给 AI 协作伙伴看的"项目说明书"，请按实际项目补充。
 
 ## 项目是什么
 <!-- 一句话：这个项目解决什么问题，用什么技术栈 -->
@@ -101,7 +101,7 @@ async function runInit(opts) {
     return;
   }
 
-  render.title('🤲 大王饶命 · 安装「饶命」技能');
+  render.title('大王饶命 · 安装「饶命」skill');
 
   // 1. 安装 skills
   const result = installSkills(targetDir);
@@ -110,12 +110,12 @@ async function runInit(opts) {
   result.errors.forEach((n) => console.log(render.warn(n)));
 
   if (!result.installed.length && !result.skipped.length) {
-    render.err('没有安装任何技能，请检查 skills 目录。');
+    render.err('没有安装任何 skill，请检查 skills 目录。');
     return;
   }
 
   console.log(render.line());
-  console.log(render.info(`技能目录：${path.join(targetDir, '.claude', 'skills')}`));
+  console.log(render.info(`skill 目录：${path.join(targetDir, '.claude', 'skills')}`));
   console.log(render.info('下次打开 Claude Code 会自动加载，检测到用户生气即激活。'));
 
   // 2. 生成记忆文件模板

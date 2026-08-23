@@ -2,10 +2,10 @@
  * dawang-raoming CLI 入口：参数解析 + 命令分发。
  *
  * 命令：
- *   dawang-raoming init    [--yes] [--dir <path>]  安装技能 + 生成记忆模板 + 注入 CLAUDE.md 行为规则
+ *   dawang-raoming init    [--yes] [--dir <path>]  安装 skill + 生成记忆模板 + 注入 CLAUDE.md 行为规则
  *   dawang-raoming try                               随机打一句搞怪道歉（彩蛋 / 验证安装）
  *   dawang-raoming doctor [--dir <path>]             犯错记忆健康体检
- *   dawang-raoming list                               列出可用技能
+ *   dawang-raoming list                               列出可用 skill
  *   dawang-raoming help / --help / -h
  *   dawang-raoming --version / -V
  */
@@ -18,13 +18,13 @@ const { runDoctor, printReport } = require('./doctor');
 const { line } = require('./phrases');
 const pkg = require('../package.json');
 
-const HELP = `🤲 dawang-raoming v${pkg.version} — 让 Claude 犯错后当场滑跪认错、还把教训刻进记忆
+const HELP = `dawang-raoming v${pkg.version} — 让 Claude 犯错后当场滑跪认错、还把教训刻进记忆
 
 用法：
-  dawang-raoming init [--yes] [--dir <path>]   安装技能到 .claude/skills/，生成记忆模板，注入 CLAUDE.md 行为规则
+  dawang-raoming init [--yes] [--dir <path>]   安装 skill 到 .claude/skills/，生成记忆模板，注入 CLAUDE.md 行为规则
   dawang-raoming try                           随机打一句古装剧式搞怪道歉（彩蛋 / 验证安装）
   dawang-raoming doctor [--dir <path>]         对犯错记忆做健康体检（屡教不改检测）
-  dawang-raoming list                           列出可用技能
+  dawang-raoming list                           列出可用 skill
   dawang-raoming help                           显示帮助
   dawang-raoming --version                      显示版本
 
@@ -66,16 +66,16 @@ function printTry() {
   console.log(render.gray('↑ 这就是它惹毛你时的开场白。安装：' + render.code('dawang-raoming init')));
 }
 
-/** 打印技能列表 */
+/** 打印 skill 列表 */
 function printList() {
-  render.title('🤲 大王饶命 · 可用技能');
+  render.title('大王饶命 · 可用 skill');
   for (const s of SKILL_META) {
     console.log(`${s.icon} ${render.bold(s.name)}`);
     console.log(render.gray(`   ${s.desc}`));
     console.log(render.gray(`   触发：${s.trigger}`));
     console.log('');
   }
-  console.log(render.info(`共 ${SKILL_META.length} 个技能。安装：` + render.code('dawang-raoming init')));
+  console.log(render.info(`共 ${SKILL_META.length} 个 skill。安装：` + render.code('dawang-raoming init')));
 }
 
 async function main(argv) {

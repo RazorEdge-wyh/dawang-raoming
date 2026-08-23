@@ -27,9 +27,9 @@ npm i -g github:RazorEdge-wyh/dawang-raoming && dawang-raoming init
 
 ## 这是什么
 
-一个 Claude Code 技能。AI 一旦检测到你明显生气，不再只会回一句「抱歉，下次注意」，而是三步走：
+一个 Claude Code skill。AI 一旦检测到你明显生气，不再只会回一句「抱歉，下次注意」，而是三步走：
 
-1. **先滑跪**：古装剧口吻来一句「大王饶命！臣罪该万死」，末尾附技能名，让你知道是它在认错
+1. **先滑跪**：古装剧口吻来一句「大王饶命！臣罪该万死」，末尾附 skill 名，让你知道是它在认错
 2. **再认错**：翻上一轮，说清楚自己错在哪——漏了需求、写了 bug，还是答非所问
 3. **最后记档**：把错因写进 `.claude/memory/dawang-raoming.md`，重点记「下次怎么改」
 
@@ -127,12 +127,12 @@ $ dawang-raoming doctor
 
 ## 借鉴
 
-玩法不是凭空发明的，参考了几位高手的做法：
+没有这些仓库，就没有大王饶命——写的时候是翻着它们学的：
 
-- 精准触发、不误报 → [nav-diagnose](https://www.skill-gallery.jp/en/skills/alekspetrov/nav-diagnose)：具体愤怒信号清单
-- 结构化道歉、不找借口 → [apology-letter](https://claudeskills.info/skill/apology-letter/)（~1.3k★）
-- 没证据不道歉 → [ex-skill](https://github.com/therealXiaomanChu/ex-skill)
-- 跨会话 Markdown 记忆 → [mental-health-companion](https://github.com/zxc7563598/mental-health-companion)
+- [anthropics/skills](https://github.com/anthropics/skills)（★171k）：Anthropic 官方 Agent Skills 规范，SKILL.md 怎么写、`description` 怎么触发，照着它来
+- [obra/superpowers](https://github.com/obra/superpowers)（★277k）：Claude Code 生态最火的 skill 框架，状态型 skill 怎么把行为规则注入工作流，学它
+- [mattpocock/skills](https://github.com/mattpocock/skills)（★234k）：真实工程师的 skill 库，零依赖、像正经工程一样维护，结构学的它
+- [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)（★73k）：1000+ Claude skill 合集，触发词和玩法语料是逛这里逛出来的
 
 ## 路线图
 
@@ -145,4 +145,4 @@ $ dawang-raoming doctor
 
 ## License
 
-MIT © [王越豪（湖南科技大学 26 届）](https://github.com/RazorEdge-wyh)
+MIT © [王越豪 | 湖南科技大学 | 26届](https://github.com/RazorEdge-wyh)

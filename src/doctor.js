@@ -14,10 +14,10 @@ const path = require('node:path');
 const { memoryPath, analyze } = require('./memory');
 
 const LEVELS = [
-  { min: 90, key: 'excellent', label: '🟢 优秀', note: 'AI 记性好、改得快' },
-  { min: 70, key: 'good', label: '🟡 良好', note: '有零星问题，补一补更好' },
-  { min: 50, key: 'fair', label: '🟠 一般', note: '记忆基本没沉淀' },
-  { min: 0, key: 'danger', label: '🔴 危险', note: '还没开始长记性' },
+  { min: 90, key: 'excellent', label: '优秀', note: 'AI 记性好、改得快' },
+  { min: 70, key: 'good', label: '良好', note: '有零星问题，补一补更好' },
+  { min: 50, key: 'fair', label: '一般', note: '记忆基本没沉淀' },
+  { min: 0, key: 'danger', label: '危险', note: '还没开始长记性' },
 ];
 
 function levelOf(score) {
@@ -42,7 +42,7 @@ function runDoctor(targetDir) {
   // 2. 有没有犯错记录（20）
   checks.push({ title: `有犯错记录（当前 ${info.total} 条）`, score: info.total >= 1 ? 20 : 0, max: 20 });
   if (info.hasFile && info.total === 0) {
-    problems.push({ key: 'file', file: path.relative(targetDir, info.file), msg: '记忆文件是空的，说明技能还没被触发过' });
+    problems.push({ key: 'file', file: path.relative(targetDir, info.file), msg: '记忆文件是空的，说明 skill 还没被触发过' });
   }
 
   // 3. 每条记录是否完整（30）：同时有「下次怎么改」和「触发输入」才算完整
@@ -83,7 +83,7 @@ function runDoctor(targetDir) {
 /** 打印报告（纯展示，无副作用） */
 function printReport(report) {
   const render = require('./render');
-  console.log(render.title('🤲 大王饶命 · 犯错记忆体检'));
+  console.log(render.title('大王饶命 · 犯错记忆体检'));
   console.log(`${render.bold(`总分：${report.total}/100`)}  ${render.bold(report.levelLabel)}  ${render.gray(report.levelNote)}`);
   console.log(render.line());
 

@@ -22,8 +22,8 @@ test('randomPhrase 返回语料库成员，且固定种子可复现', () => {
   assert.ok(PHRASES.includes(a));
 });
 
-test('line() 输出含技能名签名', () => {
+test('line() 输出含 skill 名签名', () => {
   const out = line(0);
-  assert.match(out, /技能：大王饶命/);
+  assert.match(out, /skill：大王饶命/);
   assert.match(out, /🤲/);
 });

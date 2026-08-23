@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🤲 大王饶命（dawang-raoming）
+# 大王饶命（dawang-raoming）
 
-### Claude Code 技能：让 AI 犯错后当场滑跪认错，把教训刻进记忆
+### Claude Code skill：让 AI 犯错后当场滑跪认错，把教训刻进记忆
 
-**检测到用户明显生气 → 古装剧式搞怪道歉（附技能名）→ 回溯错因 → 写入永久记忆，下次不再犯。**
+**检测到用户明显生气 → 古装剧式搞怪道歉（附 skill 名）→ 回溯错因 → 写入永久记忆，下次不再犯。**
 
 <br/>
 
@@ -37,7 +37,7 @@ npm i -g github:RazorEdge-wyh/dawang-raoming && dawang-raoming init
 你：你怎么又搞错了？？？我改了三遍了！你是不是根本没看我的需求！
 
 Claude：
-🤲 大王饶命！（技能：大王饶命）
+🤲 大王饶命！（skill：大王饶命）
 「臣罪该万死！是小的眼神不好，把您第 2 条需求给漏了。」
 
 —— 我错在哪：上一轮只实现了分页，漏了排序。
@@ -80,7 +80,7 @@ dawang-raoming init
 ```text
 your-project/
 ├── .claude/
-│   ├── skills/dawang-raoming/SKILL.md   # 技能本体
+│   ├── skills/dawang-raoming/SKILL.md   # skill 本体
 │   └── memory/dawang-raoming.md         # 犯错记忆
 └── CLAUDE.md                            # 注入了一条「AI 生气自检」规则
 ```
@@ -90,7 +90,7 @@ your-project/
 ## 命令
 
 ```text
-dawang-raoming init    安装技能 + 记忆模板 + 行为规则
+dawang-raoming init    安装 skill + 记忆模板 + 行为规则
 dawang-raoming try     随机打一句道歉，看看画风
 dawang-raoming doctor  体检记忆，揪出屡教不改
 ```
@@ -102,8 +102,8 @@ dawang-raoming doctor  体检记忆，揪出屡教不改
 ```text
 $ dawang-raoming doctor
 
-🤲 大王饶命 · 犯错记忆体检
-总分：85/100  🟡 良好  有零星问题，补一补更好
+大王饶命 · 犯错记忆体检
+总分：85/100  良好  有零星问题，补一补更好
 ────────────────────────────────────────────
   ✔ 有犯错记忆文件
   ✔ 有犯错记录（当前 6 条）
@@ -121,9 +121,9 @@ $ dawang-raoming doctor
 
 ## 工作原理
 
-1. Claude Code 原生支持 Skills：`.claude/skills/` 下的 `SKILL.md` 按 `description` 自动匹配，你一发火它就被唤起。
-2. 大王饶命是状态型技能，得持续感知怒气，所以 `init` 会在 `CLAUDE.md` 注入一条行为规则：每次回复前自查用户有没有明显生气，有就激活（三层保障：`description` + `CLAUDE.md` 规则 + `AGENTS.md`）。
-3. 触发后按三步执行，把错因追加进记忆。新对话开局，AI 先扫一遍记忆文件，主动避开那些坑。
+1. Claude Code 天生认识 skills：`.claude/skills/` 下的 `SKILL.md` 会按 `description` 自动匹配，你一发火它就醒。
+2. 光靠 `description` 触发不够稳，`init` 会往 `CLAUDE.md` 里塞一条规则：每次回复前先自查你有没有明显生气，有就激活。`description`、CLAUDE.md、AGENTS.md 三处兜底，才不容易漏。
+3. 触发后按三步执行，把错因追加进记忆。新对话开局，AI 会先扫一遍记忆文件，主动避开那些坑。
 
 ## 借鉴
 

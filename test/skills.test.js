@@ -1,5 +1,5 @@
 /**
- * skills 模块测试：技能清单与安装逻辑。
+ * skills 模块测试：skill 清单与安装逻辑。
  */
 
 const test = require('node:test');
@@ -38,12 +38,12 @@ test('installSkills 拷贝到临时项目且幂等', () => {
   }
 });
 
-test('installSkills 指定未知技能时报错', () => {
+test('installSkills 指定未知 skill 时报错', () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'dawang-raoming-test-'));
   try {
     const result = installSkills(tmp, ['not-exist']);
     assert.strictEqual(result.errors.length, 1);
-    assert.match(result.errors[0], /未知技能/);
+    assert.match(result.errors[0], /未知 skill/);
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }

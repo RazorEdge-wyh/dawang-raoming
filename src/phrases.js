@@ -26,7 +26,7 @@ function randomPhrase(seed = null) {
 /** 拼出一行完整道歉（CLI 演示用；AI 应贴合错因改写，不直接用这行） */
 function line(seed = null) {
   const p = randomPhrase(seed);
-  return `🤲 ${p.phrase}（技能：大王饶命）\n「${p.follow}」`;
+  return `🤲 ${p.phrase}（skill：大王饶命）\n「${p.follow}」`;
 }
 
 module.exports = { PHRASES, randomPhrase, line };

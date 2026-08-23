@@ -34,7 +34,7 @@ function today() {
 /** init 生成的记忆文件模板（不带示例记录，让 doctor 能诚实反映「还没触发过」） */
 const TEMPLATE = `# 大王饶命 犯错记忆
 
-> 此文件由 dawang-raoming 技能维护。每次用户明显生气，AI 记下错因与改正，避免再犯。
+> 此文件由 dawang-raoming skill 维护。每次用户明显生气，AI 记下错因与改正，避免再犯。
 > 同一错因出现 ≥2 次即「屡教不改」，AI 会主动升级戒律。
 
 <!-- 记录格式（AI 触发 dawang-raoming 时按此追加）：

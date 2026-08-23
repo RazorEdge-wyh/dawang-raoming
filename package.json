@@ -1,0 +1,45 @@
+{
+  "name": "dawang-raoming",
+  "version": "0.1.0",
+  "description": "让 Claude Code 犯错后当场滑跪认错、还把教训刻进记忆的技能：检测到用户明显生气，先来一句古装剧式搞怪道歉（大王饶命/臣罪该万死），附技能名，回溯错因，写入永久记忆避免再犯。",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "agent",
+    "ai-coding",
+    "apology",
+    "humor",
+    "memory",
+    "chinese",
+    "中文",
+    "饶命",
+    "dawang-raoming"
+  ],
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "dawang-raoming": "./bin/dawang-raoming.js"
+  },
+  "main": "./src/index.js",
+  "files": [
+    "bin",
+    "src",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RazorEdge-wyh/dawang-raoming.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RazorEdge-wyh/dawang-raoming/issues"
+  },
+  "homepage": "https://github.com/RazorEdge-wyh/dawang-raoming"
+}

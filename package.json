@@ -1,7 +1,7 @@
 {
   "name": "dawang-raoming",
   "version": "0.1.0",
-  "description": "让 Claude Code 犯错后当场滑跪认错、还把教训刻进记忆的技能：检测到用户明显生气，先来一句古装剧式搞怪道歉（大王饶命/臣罪该万死），附技能名，回溯错因，写入永久记忆避免再犯。",
+  "description": "让 Claude Code 犯错后当场滑跪认错、还把教训刻进记忆的 skill：检测到用户明显生气，先来一句古装剧式搞怪道歉（大王饶命/臣罪该万死），附 skill 名，回溯错因，写入永久记忆避免再犯。",
   "keywords": [
     "claude-code",
     "skills",

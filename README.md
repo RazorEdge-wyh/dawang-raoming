@@ -2,9 +2,9 @@
 
 # 🤲 大王饶命（dawang-raoming）
 
-### 让 Claude 犯错后当场滑跪，还把教训刻进脑子
+### Claude Code 技能：让 AI 犯错后当场滑跪认错，把教训刻进记忆
 
-**你越生气，它跪得越快。跪完认错，认完记档，下次真不犯。**
+**检测到用户明显生气 → 古装剧式搞怪道歉（附技能名）→ 回溯错因 → 写入永久记忆，下次不再犯。**
 
 <br/>
 
@@ -13,19 +13,25 @@
 ![Node](https://img.shields.io/badge/node-%3E%3D16-green)
 ![Zero deps](https://img.shields.io/badge/依赖-0-blueviolet)
 
-零依赖，纯 Markdown，装完随便改。
+零依赖，纯 Markdown，一行命令安装。
 
 ```bash
 npm i -g github:RazorEdge-wyh/dawang-raoming && dawang-raoming init
 ```
 
-> 想要英文版？去 [spare-me](https://github.com/RazorEdge-wyh/spare-me)。
+> 英文版：[spare-me](https://github.com/RazorEdge-wyh/spare-me)
 
 </div>
 
 ---
 
-## 它是干这个的
+## 这是什么
+
+一个 Claude Code 技能。AI 一旦检测到你明显生气，不再只会回一句「抱歉，下次注意」，而是三步走：
+
+1. **先滑跪**：古装剧口吻来一句「大王饶命！臣罪该万死」，末尾附技能名，让你知道是它在认错
+2. **再认错**：翻上一轮，说清楚自己错在哪——漏了需求、写了 bug，还是答非所问
+3. **最后记档**：把错因写进 `.claude/memory/dawang-raoming.md`，重点记「下次怎么改」
 
 ```text
 你：你怎么又搞错了？？？我改了三遍了！你是不是根本没看我的需求！
@@ -40,33 +46,22 @@ Claude：
 下面是按完整需求重写的实现……
 ```
 
-没有它，AI 惹你生气只会挤出一句「抱歉，我下次注意」，然后继续犯。
+道歉只是开场，**把错因写进永久记忆**才是核心——每次惹你生气，它都长一智。
 
-有它，画风变成：**跪 → 认 → 记 → 下次真不犯。**
+## 特点
 
-别把它当玩梗——最后那一步才是真货。每次惹你生气，它都长一智。
+- **搞怪但不敷衍**：道歉只出现一次，一次到位，然后立刻回去干活，不打断你
+- **真的长记性**：错因进 `.claude/memory/dawang-raoming.md`，新对话开局自动读取
+- **屡教不改会升级**：同一个错犯第二次，它会主动承认，并立一条更狠的规矩
+- **不乱道歉**：没检测到明显怒气绝不触发——凭空道歉比犯错更烦人
+- **`doctor` 体检**：一条命令给 AI 的长记性打分，揪出重复犯的错
+- **零依赖**：只用 Node 标准库，SKILL.md 是纯 Markdown，装完随便改
 
----
-
-## 它每次要办的三件事
-
-1. **跪**。古装剧口吻来一句滑跪，末尾必带 `（技能：大王饶命）`，让你知道认错的是它。
-2. **认**。回头翻上一轮，说清楚错在哪——漏了需求？代码有 bug？答非所问？只讲事实，不找借口。
-3. **记**。把错因写进 `.claude/memory/dawang-raoming.md`，重点记「下次怎么改」。
-
-同一个错犯第二次，它不会跪下装乖——会自己招认「此错已犯第二次」，然后立一条更狠的规矩。
-
-没检测到明显怒气，它绝不跪——凭空道歉比犯错更招人烦。
-
----
-
-## 装
+## 快速开始
 
 ```bash
-npm i -g github:RazorEdge-wyh/dawang-raoming   # 从 GitHub 直接装
-# 或发布到 npm 后： npm i -g dawang-raoming
-
-dawang-raoming init                            # 在项目里装技能
+npm i -g github:RazorEdge-wyh/dawang-raoming
+dawang-raoming init
 ```
 
 装完长这样：
@@ -76,24 +71,20 @@ your-project/
 ├── .claude/
 │   ├── skills/dawang-raoming/SKILL.md   # 技能本体
 │   └── memory/dawang-raoming.md         # 犯错记忆
-└── CLAUDE.md                   # 注入了一条「AI 生气自检」规则
+└── CLAUDE.md                            # 注入了一条「AI 生气自检」规则
 ```
 
 然后，去把 Claude 惹毛一次试试。
 
----
-
 ## 命令
 
 ```text
-dawang-raoming init    装技能 + 记忆模板 + 行为规则
-dawang-raoming try     随机打一句道歉，先看看画风
+dawang-raoming init    安装技能 + 记忆模板 + 行为规则
+dawang-raoming try     随机打一句道歉，看看画风
 dawang-raoming doctor  体检记忆，揪出屡教不改
 ```
 
----
-
-## doctor：验验它长没长记性
+## `doctor`：AI 长记性体检
 
 `doctor` 打开 `.claude/memory/dawang-raoming.md`，看 AI 是不是真在长记性：
 
@@ -113,41 +104,33 @@ $ dawang-raoming doctor
   ...
 ```
 
-纯本地检查，不联网、不改代码，只看一份报告。适合：每周扫一眼 AI 有没有把同一个错犯第二遍；或者给团队立规矩——**同一个错犯两次，就升级戒律**。
+纯本地检查，不联网、不改代码，只看一份报告。适合每周看一眼 AI 有没有把同一个错犯第二遍，或者给团队立规矩：**同一个错犯两次，就升级戒律**。
 
 本仓库自己就在跑 doctor——装完它会老实报告「记忆是空的，还没触发过」，触发一次后开始涨分。
 
----
+## 工作原理
 
-## 为什么「下次真不再犯」不是吹的
+1. Claude Code 原生支持 Skills：`.claude/skills/` 下的 `SKILL.md` 按 `description` 自动匹配，你一发火它就被唤起。
+2. 大王饶命是状态型技能，得持续感知怒气，所以 `init` 会在 `CLAUDE.md` 注入一条行为规则：每次回复前自查用户有没有明显生气，有就激活（三层保障：`description` + `CLAUDE.md` 规则 + `AGENTS.md`）。
+3. 触发后按三步执行，把错因追加进记忆。新对话开局，AI 先扫一遍记忆文件，主动避开那些坑。
 
-1. Claude Code 原生认 **Skills**：`.claude/skills/` 下的 `SKILL.md` 按 `description` 自动匹配，你一发火它就被唤起。
-2. 大王饶命是**状态型技能**，得持续感知怒气，所以 `init` 会在 `CLAUDE.md` 注入一条行为规则：每次回复前自查用户有没有明显生气，有就激活（三层保障：`description` + `CLAUDE.md` 规则 + `AGENTS.md`）。
-3. 激活后按那三件事执行，把错因追加进记忆。**新对话一开局，AI 先扫一遍记忆文件**，主动避开那些坑。
+## 借鉴
 
----
+玩法不是凭空发明的，参考了几位高手的做法：
 
-## 师承
-
-玩法不是凭空发明的，借鉴了几位高手的做法：
-
-- 精准触发、不误报 → [nav-diagnose](https://www.skill-gallery.jp/en/skills/alekspetrov/nav-diagnose)：具体愤怒信号清单，「单次纠正不触发」
+- 精准触发、不误报 → [nav-diagnose](https://www.skill-gallery.jp/en/skills/alekspetrov/nav-diagnose)：具体愤怒信号清单
 - 结构化道歉、不找借口 → [apology-letter](https://claudeskills.info/skill/apology-letter/)（~1.3k★）
-- 没证据不道歉 → [ex-skill](https://github.com/therealXiaomanChu/ex-skill) 的硬规则
+- 没证据不道歉 → [ex-skill](https://github.com/therealXiaomanChu/ex-skill)
 - 跨会话 Markdown 记忆 → [mental-health-companion](https://github.com/zxc7563598/mental-health-companion)
 
----
-
-## 还打算认哪些新错
+## 路线图
 
 - [ ] 更多语料：方言版、二次元版、鲁迅版
-- [ ] 记忆全局同步：一条命令把记忆同步到 `~/.claude/`
+- [ ] 记忆全局同步：一条命令同步到 `~/.claude/`
 - [ ] `doctor` 加同类错误率趋势
 - [ ] 导出 `.cursor/rules`，给 Cursor 用户
 
 欢迎提 [Issue](https://github.com/RazorEdge-wyh/dawang-raoming/issues) 或 PR。
-
----
 
 ## License
 

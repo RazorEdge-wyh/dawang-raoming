@@ -1,23 +1,23 @@
 /**
- * 技能清单与安装逻辑（复刻 zh-skills 的模式，本项目只有 dawang-raoming 一个技能）。
+ * skill 清单与安装逻辑（复刻 zh-skills 的模式，本项目只有 dawang-raoming 一个 skill）。
  *
  * skills/ 目录是产品本体（零依赖的 Markdown），这里只负责：
- * - 列出可用技能
- * - 把技能拷贝到目标项目的 .claude/skills/ 下
+ * - 列出可用 skill
+ * - 把 skill 拷贝到目标项目的 .claude/skills/ 下
  */
 
 const fs = require('node:fs');
 const path = require('node:path');
 
-// 包内技能目录（bin/dawang-raoming.js 的上两级是包根）
+// 包内 skill 目录（bin/dawang-raoming.js 的上两级是包根）
 const SKILLS_ROOT = path.resolve(__dirname, '..', 'skills');
 
-/** 技能说明（与 skills 目录下各 SKILL.md 的 frontmatter 保持一致） */
+/** skill 说明（与 skills 目录下各 SKILL.md 的 frontmatter 保持一致） */
 const SKILL_META = [
   {
     name: 'dawang-raoming',
     icon: '🤲',
-    desc: '用户明显生气时：古装剧口吻搞怪道歉 + 附技能名 + 回溯错因 + 写入永久记忆',
+    desc: '用户明显生气时：古装剧口吻搞怪道歉 + 附 skill 名 + 回溯错因 + 写入永久记忆',
     trigger: '用户生气 / 发火 / 抱怨「又错了」时',
   },
 ];
@@ -39,7 +39,7 @@ function readFrontmatter(file) {
   }
 }
 
-/** 列出所有可用技能（含解析后的描述） */
+/** 列出所有可用 skill（含解析后的描述） */
 function listSkills() {
   return fs.readdirSync(SKILLS_ROOT, { withFileTypes: true })
     .filter((d) => d.isDirectory())
@@ -51,9 +51,9 @@ function listSkills() {
 }
 
 /**
- * 安装技能到目标项目。
+ * 安装 skill 到目标项目。
  * @param {string} targetDir 目标项目根目录
- * @param {string[]} names 要安装的技能名（空 = 全部）
+ * @param {string[]} names 要安装的 skill 名（空 = 全部）
  * @returns {{ installed: string[], skipped: string[], errors: string[] }}
  */
 function installSkills(targetDir, names = []) {
@@ -65,7 +65,7 @@ function installSkills(targetDir, names = []) {
 
   for (const name of toInstall) {
     if (!available.includes(name)) {
-      result.errors.push(`未知技能：${name}`);
+      result.errors.push(`未知 skill：${name}`);
       continue;
     }
     const from = path.join(SKILLS_ROOT, name, 'SKILL.md');
